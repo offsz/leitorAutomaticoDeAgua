@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "ONW Gamer",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-v1", "id": "esp", "top": -50.72, "left": -321.6, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -209.7,
+      "left": -282.5,
+      "attrs": { "distance": "88" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -212.4,
+      "left": -396.6,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -118.4,
+      "left": -32.8,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "ultrasonic1:GND", "black", [ "h0" ] ],
+    [ "esp:D13", "led1:A", "red", [ "h0" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "esp:D5", "ultrasonic1:ECHO", "blue", [ "h0" ] ],
+    [ "ultrasonic1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "lcd1:VCC", "esp:3V3", "red", [ "h-48", "v-67.1" ] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [ "h-19.2", "v-67.2" ] ],
+    [ "esp:D22", "lcd1:SCL", "gray", [ "h18.71", "v211.2" ] ],
+    [ "esp:D21", "lcd1:SDA", "purple", [ "h47.51", "v172.8", "h38.4" ] ],
+    [ "esp:D4", "ultrasonic1:TRIG", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
